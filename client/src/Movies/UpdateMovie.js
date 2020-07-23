@@ -43,7 +43,7 @@ export const UpdateMovie = (props) => {
     event.preventDefault()
     axios.put(`http://localhost:5000/api/movies/${id}`, movieData)
     .then(response => {
-      console.log(movieData)
+      console.log(response)
       setMovieList(
         movieList.map((movie, index) => {
           return index === id?
