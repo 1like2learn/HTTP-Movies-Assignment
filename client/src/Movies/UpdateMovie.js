@@ -10,7 +10,7 @@ const initialMovieData = {
 }
 
 export const UpdateMovie = (props) => {
-  const { movieList, setMovieList } = props
+  const { updateMovieList } = props
   const [ movieData, setMovieData ] = useState(initialMovieData)
   const { id } = useParams()
   const { push } = useHistory()
@@ -43,15 +43,7 @@ export const UpdateMovie = (props) => {
     event.preventDefault()
     axios.put(`http://localhost:5000/api/movies/${id}`, movieData)
     .then(response => {
-      console.log(response)
-      setMovieList(
-        movieList.map((movie, index) => {
-          return index === id?
-          movieData:
-          movie
-        })
-        )
-        console.log(movieList)
+      updateMovieList(movieData, id)
       push(`/`)
     })
     .catch(error => console.log(error))
